@@ -9,22 +9,22 @@ def get_next_states(state):
     for i in range(n):
         if state[i] == '_':
             continue
-        # Move right
+    
         if i+1 < n and state[i+1] == '_':
             new_state = state.copy()
             new_state[i], new_state[i+1] = new_state[i+1], new_state[i]
             next_states.append(new_state)
-        # Jump right over one rabbit
+
         if i+2 < n and state[i+2] == '_' and state[i+1] != '_':
             new_state = state.copy()
             new_state[i], new_state[i+2] = new_state[i+2], new_state[i]
             next_states.append(new_state)
-        # Move left
+    
         if i-1 >= 0 and state[i-1] == '_':
             new_state = state.copy()
             new_state[i], new_state[i-1] = new_state[i-1], new_state[i]
             next_states.append(new_state)
-        # Jump left over one rabbit
+
         if i-2 >= 0 and state[i-2] == '_' and state[i-1] != '_':
             new_state = state.copy()
             new_state[i], new_state[i-2] = new_state[i-2], new_state[i]
@@ -34,7 +34,7 @@ def get_next_states(state):
 def bfs(initial_state):
     queue = deque()
     visited = set()
-    parent = {}  # To store the path
+    parent = {}  
 
     state_str = ''.join(initial_state)
     queue.append(initial_state)
@@ -44,7 +44,6 @@ def bfs(initial_state):
     while queue:
         current = queue.popleft()
         if is_goal(current):
-            # Goal reached; reconstruct path
             path = []
             while current:
                 path.append(current)
